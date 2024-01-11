@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: show <object> <id>
         """
-        objs = storage.all()
+        objkt = storage.all()
         args = line.split(" ")
         if line == "":
             print("** class name missing **")
@@ -72,10 +72,10 @@ class HBNBCommand(cmd.Cmd):
             args[1] = args[1].replace('"', '') \
                     if args[1][0] == '"' else args[1]
             classname_id = args[0] + "." + args[1]
-            if classname_id not in objs.keys():
+            if classname_id not in objkt.keys():
                 print("** no instance found **")
             else:
-                print(objs[classname_id])
+                print(objkt[classname_id])
 
     def do_destroy(self, line):
         """
@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: destroy <object> <id>
         """
-        objs = storage.all()
+        objkt = storage.all()
         args = line.split(" ")
         if line == "":
             print("** class name missing **")
@@ -95,13 +95,13 @@ class HBNBCommand(cmd.Cmd):
             args[1] = args[1].replace('"', '') \
                     if args[1][0] == '"' else args[1]
             classname_id = args[0] + "." + args[1]
-            if classname_id not in objs.keys():
+            if classname_id not in objkt.keys():
                 print("** no instance found **")
             else:
-                del objs[classname_id]
+                del objkt[classname_id]
                 storage.save()
 
-    def go_all(self, line):
+    def do_all(self, line):
         """
             Prints all string representation of all instances
 
@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
                 list_all.append(str(objkt[obj]))
             print(list_all)
 
-    def go_update(self, line):
+    def do_update(self, line):
         """
         Updates an instance by adding or updating attribute
 
@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, args[2], int(args[3]))
                 storage.save()
 
-    def go_count(self, line):
+    def do_count(self, line):
         """
             this method Counts the number of objects
         """
@@ -203,17 +203,18 @@ class HBNBCommand(cmd.Cmd):
                 return None
         return cmd.Cmd.default(self, line)
 
-    def go_EOF(self, line):
+    def do_EOF(self, line):
         """
         End-of-file interpreter
+	exits the program
 
         Usage: CTRL+D
         """
         return True
 
-    def go_quit(self, line):
+    def do_quit(self, line):
         """
-        also ends the command line interpreter
+	Quit command to exit the program
 
         Usage: quit
         """
