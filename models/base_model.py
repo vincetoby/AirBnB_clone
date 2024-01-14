@@ -14,7 +14,7 @@ class BaseModel:
         """the Constructor"""
         if kwargs:
             for kw, vw in kwargs.items():
-                if kw == "created_at" or k == "updated_at":
+                if kw == "created_at" or kw == "updated_at":
                     setattr(self, kw, datetime.strptime(vw, self.formatofstr))
                 elif kw != "__class__":
                     setattr(self, kw, vw)
