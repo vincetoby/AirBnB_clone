@@ -109,6 +109,6 @@ help or help <command> Ex:
 * Place
 * Review
 
-# Authors
+# Authors are:
 * Ange Mukundente - <angemukundente@gmail.com>
 * Vincent Ekechukwu - <vincetobechukwu@gmal.com>
